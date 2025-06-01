@@ -28,5 +28,3 @@ mybatis:
     map-underscore-to-camel-case: true  # 开启数据库字段_转驼峰命名映射
   mapper-locations: classpath:mapper/*.xml  # MyBatis映射文件路径
 
-# 文件服务基础URL配置
-fileBaseUrl: http://localhost:${server.port}  # 文件服务根地址，动态引用服务端口

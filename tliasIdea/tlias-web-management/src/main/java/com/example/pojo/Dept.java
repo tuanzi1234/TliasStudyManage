@@ -4,7 +4,9 @@ package com.example.pojo;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-
+/**
+ * 部门实体类
+ */
 public class Dept {
     private Integer id;
     private String name;

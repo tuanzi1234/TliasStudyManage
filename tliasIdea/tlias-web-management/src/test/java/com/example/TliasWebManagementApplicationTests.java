@@ -10,4 +10,12 @@ class TliasWebManagementApplicationTests {
     void contextLoads() {
     }
 
+    @Test
+    public void sun(){
+        String a = "2";
+        String b = "2";
+        System.out.println(a + b);
+    }
+
 }
+
