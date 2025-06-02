@@ -16,6 +16,7 @@ import java.util.List;
 public class DeptServiceImpl implements DeptService {
     @Autowired
     private DeptMapper deptMapper;
+
     /*
      * 查询所有部门信息
      */

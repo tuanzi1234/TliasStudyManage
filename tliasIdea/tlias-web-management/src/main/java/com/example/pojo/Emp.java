@@ -3,6 +3,7 @@ package com.example.pojo;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -22,11 +23,15 @@ public class Emp {
     private Integer deptId; //关联的部门ID
     private LocalDateTime createTime; //创建时间
     private LocalDateTime updateTime; //修改时间
+    //添加一个部门名称属性，封装员工所属的部门名称
+    private String deptName;
+    //添加一个集合，封装工作经历列表
+    private List<EmpExpr> exprList;
 
     public Emp() {
     }
 
-    public Emp(Integer id, String username, String password, String name, Integer gender, String phone, Integer job, Integer salary, String image, LocalDate entryDate, Integer deptId, LocalDateTime createTime, LocalDateTime updateTime) {
+    public Emp(Integer id, String username, String password, String name, Integer gender, String phone, Integer job, Integer salary, String image, LocalDate entryDate, Integer deptId, LocalDateTime createTime, LocalDateTime updateTime, String deptName, List<EmpExpr> exprList) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -40,6 +45,8 @@ public class Emp {
         this.deptId = deptId;
         this.createTime = createTime;
         this.updateTime = updateTime;
+        this.deptName = deptName;
+        this.exprList = exprList;
     }
 
     public LocalDateTime getUpdateTime() {
@@ -146,17 +153,33 @@ public class Emp {
         this.id = id;
     }
 
+    public String getDeptName() {
+        return deptName;
+    }
+
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
+    }
+
+    public List<EmpExpr> getExprList() {
+        return exprList;
+    }
+
+    public void setExprList(List<EmpExpr> exprList) {
+        this.exprList = exprList;
+    }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
         Emp emp = (Emp) object;
-        return Objects.equals(id, emp.id) && Objects.equals(username, emp.username) && Objects.equals(password, emp.password) && Objects.equals(name, emp.name) && Objects.equals(gender, emp.gender) && Objects.equals(phone, emp.phone) && Objects.equals(job, emp.job) && Objects.equals(salary, emp.salary) && Objects.equals(image, emp.image) && Objects.equals(entryDate, emp.entryDate) && Objects.equals(deptId, emp.deptId) && Objects.equals(createTime, emp.createTime) && Objects.equals(updateTime, emp.updateTime);
+        return Objects.equals(id, emp.id) && Objects.equals(username, emp.username) && Objects.equals(password, emp.password) && Objects.equals(name, emp.name) && Objects.equals(gender, emp.gender) && Objects.equals(phone, emp.phone) && Objects.equals(job, emp.job) && Objects.equals(salary, emp.salary) && Objects.equals(image, emp.image) && Objects.equals(entryDate, emp.entryDate) && Objects.equals(deptId, emp.deptId) && Objects.equals(createTime, emp.createTime) && Objects.equals(updateTime, emp.updateTime) && Objects.equals(deptName, emp.deptName) && Objects.equals(exprList, emp.exprList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password, name, gender, phone, job, salary, image, entryDate, deptId, createTime, updateTime);
+        return Objects.hash(id, username, password, name, gender, phone, job, salary, image, entryDate, deptId, createTime, updateTime, deptName, exprList);
     }
 
     @Override
@@ -175,6 +198,8 @@ public class Emp {
                 ", deptId=" + deptId +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
+                ", deptName='" + deptName + '\'' +
+                ", empExprs=" + exprList +
                 '}';
     }
 }

@@ -23,9 +23,9 @@ public class DeptController {
     @Autowired
     private DeptService deptService;//  注入DeptService
 
- /*
-  * 查询所有部门信息
-  */
+    /*
+     * 查询所有部门信息
+     */
     @GetMapping
     public Result list() {
         logger.info("查询所有部门信息");
@@ -42,6 +42,7 @@ public class DeptController {
         deptService.delete(id);
         return Result.success();
     }
+
     /*
      * 添加部门信息
      */
