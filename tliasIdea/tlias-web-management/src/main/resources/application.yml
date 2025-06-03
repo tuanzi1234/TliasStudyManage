@@ -27,4 +27,7 @@ mybatis:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  # SQL日志输出到控制台
     map-underscore-to-camel-case: true  # 开启数据库字段_转驼峰命名映射
   mapper-locations: classpath:mapper/*.xml  # MyBatis映射文件路径
-
+# 日志配置设置
+logging:
+  level:    #用于配置特定组件的日志记录级别
+    org.springframework.jdbc.support.JdbcTransactionManager: debug #该配置启用JdbcTransactionManager的调试日志，便于排查数据库事务相关问题，可以查看事务开启/提交/回滚等生命周期事件
