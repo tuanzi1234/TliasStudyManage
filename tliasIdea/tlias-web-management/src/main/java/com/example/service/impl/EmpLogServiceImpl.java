@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class EmpLogServiceImpl implements EmpLogService {
     @Autowired
     private EmpLogMapper empLogMapper;
+
     //添加员工日志
     @Transactional(propagation = Propagation.REQUIRES_NEW) // 开启新事务,以下方法在新事务中运行
     @Override

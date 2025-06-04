@@ -2,13 +2,12 @@ package com.example.mapper;
 
 import com.example.pojo.Emp;
 import com.example.pojo.EmpQueryParam;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -36,4 +35,21 @@ public interface EmpMapper {
     @Options(useGeneratedKeys = true, keyProperty = "id")// 获取新增数据的主键id 主键返回
     @Insert("insert into emp (username, name, gender, phone, job, salary, image, entry_date, create_time, update_time, dept_id) values (#{username}, #{name}, #{gender}, #{phone}, #{job}, #{salary}, #{image}, #{entryDate}, #{createTime}, #{updateTime}, #{deptId})")
     void add(Emp emp);
+
+    //删除员工
+    void deleteByIds(List<Integer> ids);
+
+    //查询员工详情
+    Emp findById(Integer id);
+
+    //根据id修改员工信息
+    void updateById(Emp emp);
+
+    //统计职位对应的员工数量
+    @MapKey("pos")
+    List<Map<String, Object>> countByJob();
+
+    //统计员工性别数量
+    @MapKey("gender")
+    List<Map<String, Object>> getEmpGenderData();
 }

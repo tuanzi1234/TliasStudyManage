@@ -8,10 +8,9 @@ import com.example.service.EmpService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  * 员工管理控制器
@@ -56,6 +55,45 @@ public class EmpController {
         //记录所有的参数日志
         log.info("新增员工，参数：{}", emp);
         empService.add(emp);
+        return Result.success();
+    }
+
+    /*
+     * 删除员工: 使用数组封装id
+     */
+    /*@DeleteMapping
+    public Result delete( Integer[] ids) {
+        log.info("删除员工，参数：{}", Arrays.toString(ids));
+
+        return Result.success();
+    }*/
+    /*
+     * 删除员工: 使用集合封装id
+     */
+    @DeleteMapping
+    public Result delete(@RequestParam ArrayList<Integer> ids) {
+        log.info("删除员工，参数：{}", ids);
+        empService.delete(ids);
+        return Result.success();
+    }
+
+    /*
+     * 根据id查询员工基本信息以及工作经历
+     */
+    @GetMapping("/{id}")
+    public Result findById(@PathVariable Integer id) {
+        log.info("根据id查询员工基本信息以及工作经历，参数：{}", id);
+        Emp emp = empService.findById(id);
+        return Result.success(emp);
+    }
+
+    /*
+     * 修改员工信息
+     */
+    @PutMapping
+    public Result update(@RequestBody Emp emp) {
+        log.info("修改员工信息，参数：{}", emp);
+        empService.updateById(emp);
         return Result.success();
     }
 }

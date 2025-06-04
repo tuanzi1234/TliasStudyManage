@@ -5,6 +5,7 @@ import com.example.pojo.EmpQueryParam;
 import com.example.pojo.PageResult;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  * 员工管理业务逻辑层接口
@@ -21,4 +22,19 @@ public interface EmpService {
      * 新增员工
      */
     void add(Emp emp);
+
+    /*
+     * 删除员工
+     */
+    void delete(ArrayList<Integer> ids);
+
+    /*
+     * 根据id查询员工
+     */
+    Emp findById(Integer id);
+
+    /*
+     * 修改员工
+     */
+    void updateById(Emp emp);
 }

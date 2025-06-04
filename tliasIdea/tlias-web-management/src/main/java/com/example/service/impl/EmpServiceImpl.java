@@ -14,6 +14,9 @@ import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -95,8 +98,50 @@ public class EmpServiceImpl implements EmpService {
             }
         } finally {
             //记录操作日志，新增员工时，无论成功或失败都记录操作日志
-            EmpLog empLog = new EmpLog( null, LocalDateTime.now(), "添加员工：" + emp );
+            EmpLog empLog = new EmpLog(null, LocalDateTime.now(), "添加员工：" + emp);
             empLogService.insertLog(empLog);
+        }
+    }
+
+    /*
+     * 批量删除员工
+     */
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void delete(ArrayList<Integer> ids) {
+        //批量删除员工
+        empMapper.deleteByIds(ids);
+        //批量删除员工工作经历
+        empExprMapper.deleteByEmpIds(ids);
+
+    }
+
+    /*
+     * 根据id查询员工
+     */
+    @Override
+    public Emp findById(Integer id) {
+        //查询员工基本信息和工作经历
+        return empMapper.findById(id);
+    }
+
+    /*
+     * 修改员工
+     */
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void updateById(Emp emp) {
+        //根据id修改用户基本信息
+        //更新时间
+        emp.setUpdateTime(LocalDateTime.now());
+        empMapper.updateById(emp);
+        //根据id删除或增加员工工作经历
+        empExprMapper.deleteByEmpIds(Collections.singletonList(emp.getId()));
+        List<EmpExpr> exprList = emp.getExprList();
+        if (!CollectionUtils.isEmpty(exprList)) {
+            // 遍历集合， 为每一个员工工作经历设置员工id
+            exprList.forEach(expr -> expr.setEmpId(emp.getId()));
+            empExprMapper.addBatch(exprList);
         }
     }
 }

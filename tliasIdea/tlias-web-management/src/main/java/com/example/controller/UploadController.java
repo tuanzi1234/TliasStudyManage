@@ -44,9 +44,10 @@ public class UploadController {
     private AliyunOSSOperator aliyunOSSOperator;
     //记录日志
     private static final Logger logger = LoggerFactory.getLogger(UploadController.class);
+
     @PostMapping("/upload")
     public Result upload(MultipartFile file) throws Exception {
-        logger.info("文件上传：{}",  file.getOriginalFilename());
+        logger.info("文件上传：{}", file.getOriginalFilename());
         //文件传入阿里云OSS
         String url = aliyunOSSOperator.upload(file.getBytes(), file.getOriginalFilename());
         logger.info("文件上传成功：{}", url);
