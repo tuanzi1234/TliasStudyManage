@@ -3,6 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.EmpMapper">
+    <!--    根据id更新员工-->
     <update id="updateById">
         update emp
         <set>
@@ -123,8 +124,13 @@
     <!--    统计员工性别人数-->
     <select id="getEmpGenderData" resultType="java.util.Map">
         select if(gender = 1, '男', '女') name,
-               count(*) as               value
+               count(*) as                value
         from emp
         group by gender
+    </select>
+    <!--    查询所有员工-->
+    <select id="findAll" resultType="com.example.pojo.Emp">
+        select *
+        from emp
     </select>
 </mapper>

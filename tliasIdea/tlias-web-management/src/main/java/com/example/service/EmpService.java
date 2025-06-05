@@ -6,6 +6,7 @@ import com.example.pojo.PageResult;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 员工管理业务逻辑层接口
@@ -37,4 +38,9 @@ public interface EmpService {
      * 修改员工
      */
     void updateById(Emp emp);
+
+    /*
+     * 查询所有员工
+     */
+    List<Emp> findAll();
 }

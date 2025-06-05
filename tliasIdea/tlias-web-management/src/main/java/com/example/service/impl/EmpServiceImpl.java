@@ -144,4 +144,9 @@ public class EmpServiceImpl implements EmpService {
             empExprMapper.addBatch(exprList);
         }
     }
+
+    @Override
+    public List<Emp> findAll() {
+        return empMapper.findAll();
+    }
 }

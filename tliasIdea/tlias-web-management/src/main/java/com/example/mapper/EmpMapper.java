@@ -52,4 +52,6 @@ public interface EmpMapper {
     //统计员工性别数量
     @MapKey("gender")
     List<Map<String, Object>> getEmpGenderData();
+
+    List<Emp> findAll();
 }
