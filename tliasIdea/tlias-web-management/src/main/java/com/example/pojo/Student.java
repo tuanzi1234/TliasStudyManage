@@ -16,7 +16,7 @@ public class Student {
     private Integer isCollege;
     private String address;
     private Integer degree;
-    private LocalDate gradeDate;
+    private LocalDate graduationDate;
     private Integer clazzId;
     private Integer violationCount;
     private Integer violationScore;
@@ -28,7 +28,7 @@ public class Student {
     public Student() {
     }
 
-    public Student(Integer id, String name, String no, Integer gender, String phone, String idCard, Integer isCollege, String address, Integer degree, LocalDate gradeDate, Integer clazzId, Integer violationCount, Integer violationScore, LocalDate createTime, LocalDate updateTime, String clazzName) {
+    public Student(Integer id, String name, String no, Integer gender, String phone, String idCard, Integer isCollege, String address, Integer degree, LocalDate graduationDate, Integer clazzId, Integer violationCount, Integer violationScore, LocalDate createTime, LocalDate updateTime, String clazzName) {
         this.id = id;
         this.name = name;
         this.no = no;
@@ -38,7 +38,7 @@ public class Student {
         this.isCollege = isCollege;
         this.address = address;
         this.degree = degree;
-        this.gradeDate = gradeDate;
+        this.graduationDate = graduationDate;
         this.clazzId = clazzId;
         this.violationCount = violationCount;
         this.violationScore = violationScore;
@@ -119,12 +119,12 @@ public class Student {
         this.degree = degree;
     }
 
-    public LocalDate getGradeDate() {
-        return gradeDate;
+    public LocalDate getGraduationDate() {
+        return graduationDate;
     }
 
-    public void setGradeDate(LocalDate gradeDate) {
-        this.gradeDate = gradeDate;
+    public void setGraduationDate(LocalDate graduationDate) {
+        this.graduationDate = graduationDate;
     }
 
     public Integer getClazzId() {
@@ -180,12 +180,12 @@ public class Student {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
         Student student = (Student) object;
-        return Objects.equals(id, student.id) && Objects.equals(name, student.name) && Objects.equals(no, student.no) && Objects.equals(gender, student.gender) && Objects.equals(phone, student.phone) && Objects.equals(idCard, student.idCard) && Objects.equals(isCollege, student.isCollege) && Objects.equals(address, student.address) && Objects.equals(degree, student.degree) && Objects.equals(gradeDate, student.gradeDate) && Objects.equals(clazzId, student.clazzId) && Objects.equals(violationCount, student.violationCount) && Objects.equals(violationScore, student.violationScore) && Objects.equals(createTime, student.createTime) && Objects.equals(updateTime, student.updateTime) && Objects.equals(clazzName, student.clazzName);
+        return Objects.equals(id, student.id) && Objects.equals(name, student.name) && Objects.equals(no, student.no) && Objects.equals(gender, student.gender) && Objects.equals(phone, student.phone) && Objects.equals(idCard, student.idCard) && Objects.equals(isCollege, student.isCollege) && Objects.equals(address, student.address) && Objects.equals(degree, student.degree) && Objects.equals(graduationDate, student.graduationDate) && Objects.equals(clazzId, student.clazzId) && Objects.equals(violationCount, student.violationCount) && Objects.equals(violationScore, student.violationScore) && Objects.equals(createTime, student.createTime) && Objects.equals(updateTime, student.updateTime) && Objects.equals(clazzName, student.clazzName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, no, gender, phone, idCard, isCollege, address, degree, gradeDate, clazzId, violationCount, violationScore, createTime, updateTime, clazzName);
+        return Objects.hash(id, name, no, gender, phone, idCard, isCollege, address, degree, graduationDate, clazzId, violationCount, violationScore, createTime, updateTime, clazzName);
     }
 
     @Override
@@ -200,7 +200,7 @@ public class Student {
                 ", isCollege=" + isCollege +
                 ", address='" + address + '\'' +
                 ", degree=" + degree +
-                ", gradeDate=" + gradeDate +
+                ", graduationDate=" + graduationDate +
                 ", clazzId=" + clazzId +
                 ", violationCount=" + violationCount +
                 ", violationScore=" + violationScore +

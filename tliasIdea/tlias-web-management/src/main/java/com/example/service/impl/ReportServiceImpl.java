@@ -1,7 +1,9 @@
 package com.example.service.impl;
 
 import com.example.mapper.EmpMapper;
+import com.example.mapper.StudentMapper;
 import com.example.pojo.JobOption;
+import com.example.pojo.StudentCountOption;
 import com.example.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,8 @@ public class ReportServiceImpl implements ReportService {
     //注入统计员工人数的mapper接口
     @Autowired
     private EmpMapper empMapper;
+    @Autowired
+    private StudentMapper studentMapper;
 
     //统计对应部门的员工人数
     @Override
@@ -33,5 +37,22 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public List<Map<String, Object>> getEmpGenderData() {
         return empMapper.getEmpGenderData();
+    }
+
+    //统计学生学历人数
+    @Override
+    public List<Map<String, Object>> getStudentDegreeData() {
+        return studentMapper.getStudentDegreeData();
+    }
+
+    //统计学生班级人数
+    @Override
+    public StudentCountOption getStudentCountData() {
+        //获取学生班级数据
+        List<Map<String, Object>> clazzList = studentMapper.getStudentCountData();
+        //拼接数据结果
+        List<Object> clazzName = clazzList.stream().map(dataMap -> dataMap.get("clazzList")).toList();
+        List<Object> dataList = clazzList.stream().map(dataMap -> dataMap.get("dataList")).toList();
+        return new StudentCountOption(clazzName, dataList);
     }
 }

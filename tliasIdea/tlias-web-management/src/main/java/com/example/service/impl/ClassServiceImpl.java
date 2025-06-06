@@ -1,6 +1,7 @@
 package com.example.service.impl;
 
 import com.example.mapper.ClassMapper;
+import com.example.mapper.StudentMapper;
 import com.example.pojo.Class;
 import com.example.pojo.ClassQueryParam;
 import com.example.pojo.EmpQueryParam;
@@ -27,6 +28,12 @@ public class ClassServiceImpl implements ClassService {
     @Autowired
     private ClassMapper classMapper;
     /*
+     * 引入学生管理Mapper接口
+     */
+    @Autowired
+    private StudentMapper studentMapper;
+
+    /*
      * 分页查询所有班级信息
      */
     @Override
@@ -40,11 +47,9 @@ public class ClassServiceImpl implements ClassService {
         for (Class clazz : clazzList) {
             if (clazz.getBeginDate().isAfter(LocalDate.now())) {
                 clazz.setStatus("未开班");
-            }
-            else if (clazz.getEndDate().isBefore(LocalDate.now())) {
+            } else if (clazz.getEndDate().isBefore(LocalDate.now())) {
                 clazz.setStatus("已结课");
-            }
-            else {
+            } else {
                 clazz.setStatus("已开班");
             }
         }
@@ -52,6 +57,7 @@ public class ClassServiceImpl implements ClassService {
         Page<Class> page = (Page<Class>) clazzList;
         return new PageResult<>(page.getTotal(), page.getResult());
     }
+
     /*
      * 添加班级信息
      */
@@ -69,6 +75,10 @@ public class ClassServiceImpl implements ClassService {
      */
     @Override
     public void deleteById(Integer id) {
+        // 校验班级是否有关联学生
+        if (studentMapper.countByClassId(id) > 0) {
+            throw new RuntimeException("该班级下存在学生，无法删除");
+        }
         classMapper.deleteById(id);
     }
 

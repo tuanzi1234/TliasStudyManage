@@ -2,6 +2,7 @@ package com.example.controller;
 
 import com.example.pojo.JobOption;
 import com.example.pojo.Result;
+import com.example.pojo.StudentCountOption;
 import com.example.service.ReportService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +33,7 @@ public class ReportController {
         JobOption jobOption = reportService.getEmpJobData();
         return Result.success(jobOption);
     }
+
     /*
      * 统计员工性别人数
      */
@@ -42,4 +44,23 @@ public class ReportController {
         return Result.success(genderData);
     }
 
+    /*
+     * 获取所有学院学历数据
+     */
+    @GetMapping("/studentDegreeData")
+    public Result studentDegreeData() {
+        log.info("获取所有学院学历数据");
+        List<Map<String, Object>> degreeData = reportService.getStudentDegreeData();
+        return Result.success(degreeData);
+    }
+
+    /*
+     * 班级人数统计
+     */
+    @GetMapping("/studentCountData")
+    public Result studentCountData() {
+        log.info("班级人数统计");
+        StudentCountOption studentCountData = reportService.getStudentCountData();
+        return Result.success(studentCountData);
+    }
 }

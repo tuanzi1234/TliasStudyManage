@@ -29,28 +29,31 @@ public class ClassController {
      */
     @GetMapping
     public Result list(ClassQueryParam classQueryParam) {
-        logger.info("分页查询班级信息：{}" , classQueryParam);
+        logger.info("分页查询班级信息：{}", classQueryParam);
         PageResult<Class> classList = classService.findByPage(classQueryParam);
         return Result.success(classList);
     }
+
     /*
      * 添加班级信息
      */
     @PostMapping
     public Result add(@RequestBody Class clazz) {
-        logger.info("添加班级信息：{}" , clazz);
+        logger.info("添加班级信息：{}", clazz);
         classService.add(clazz);
         return Result.success();
     }
+
     /*
      * 删除班级信息
      */
     @DeleteMapping("/{id}")
     public Result delete(@PathVariable Integer id) {
-        logger.info("删除班级信息：{}" , id);
+        logger.info("删除班级信息：{}", id);
         classService.deleteById(id);
         return Result.success();
     }
+
     /*
      * 根据id查询班级信息
      */
@@ -60,6 +63,7 @@ public class ClassController {
         Class clazz = classService.findById(id);
         return Result.success(clazz);
     }
+
     /*
      * 根据id修改班级信息
      */
@@ -69,6 +73,7 @@ public class ClassController {
         classService.updateById(clazz);
         return Result.success();
     }
+
     /*
      * 查询所有班级信息
      */
