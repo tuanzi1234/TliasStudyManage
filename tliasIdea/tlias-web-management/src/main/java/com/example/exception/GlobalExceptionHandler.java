@@ -50,7 +50,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler
     public Result handleException(RuntimeException e) {
         //记录日志
-        log.error("空指针出错", e);
+        log.error("运行时出错", e);
         //返回错误信息
         return Result.error(e.getMessage());
     }

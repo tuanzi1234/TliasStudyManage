@@ -5,6 +5,7 @@ import com.example.mapper.EmpMapper;
 import com.example.pojo.*;
 import com.example.service.EmpLogService;
 import com.example.service.EmpService;
+import com.example.utils.JwtUtils;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +15,7 @@ import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * 员工管理业务实现类
@@ -145,8 +143,34 @@ public class EmpServiceImpl implements EmpService {
         }
     }
 
+    /*
+     * 查询所有员工
+     */
     @Override
     public List<Emp> findAll() {
         return empMapper.findAll();
+    }
+
+    /*
+     * 员工登录
+     */
+    @Override
+    public LoginInfo login(Emp emp) {
+        //1.调用Mapper，查询用户信息
+        Emp empDB = empMapper.findByUsernameAndPassword(emp.getUsername(), emp.getPassword());
+        //2.判断用户是否存在，存在则组装登录信息，不存在则返回null
+        if (empDB != null){
+            LoginInfo loginInfo = new LoginInfo();
+            loginInfo.setId(empDB.getId());
+            loginInfo.setUsername(empDB.getUsername());
+            loginInfo.setName(empDB.getName());
+            //生成token
+            Map<String, Object> claims = new HashMap<>();
+            claims.put("id", empDB.getId());
+            claims.put("username", empDB.getUsername());
+            loginInfo.setToken(JwtUtils.generateJwt(claims));
+            return loginInfo;
+        }
+        return null;
     }
 }

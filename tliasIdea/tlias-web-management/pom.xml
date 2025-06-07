@@ -48,14 +48,14 @@
             <version>1.4.7</version>
         </dependency>
 
-<!--        阿里云OSS-->
+        <!--        阿里云OSS-->
         <dependency>
             <groupId>com.aliyun.oss</groupId>
             <artifactId>aliyun-sdk-oss</artifactId>
             <version>3.17.4</version>
         </dependency>
 
-<!--        jaxb依赖-->
+        <!--        jaxb依赖-->
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
@@ -96,6 +96,13 @@
             <artifactId>mybatis-spring-boot-starter-test</artifactId>
             <version>3.0.4</version>
             <scope>test</scope>
+        </dependency>
+
+        <!--        JWT依赖-->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
         </dependency>
     </dependencies>
 

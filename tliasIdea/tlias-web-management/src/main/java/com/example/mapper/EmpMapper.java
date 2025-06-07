@@ -59,4 +59,8 @@ public interface EmpMapper {
 
     //查询所有员工
     List<Emp> findAll();
+
+    //员工登录查询用户名和密码
+    @Select("SELECT id,username,name FROM emp WHERE username = #{username} AND password = #{password}")
+    Emp findByUsernameAndPassword(String username, String password);
 }
