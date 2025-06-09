@@ -9,7 +9,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 public class TliasWebManagementApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(TliasWebManagementApplication.class, args);
+        SpringApplication.                                                  run(TliasWebManagementApplication.class, args);
     }
 
 }

@@ -4,7 +4,10 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.EmpLogMapper">
 
-    <select id="findByPage" resultType="com.example.pojo.EmpLogQueryParam">
-        SELECT * FROM emp_log
+    <select id="findByPage" resultType="com.example.pojo.OperateLog">
+        SELECT l.*,
+               e.name AS operate_emp_name
+        FROM operate_log l
+                 LEFT JOIN emp e ON l.operate_emp_id = e.id
     </select>
 </mapper>

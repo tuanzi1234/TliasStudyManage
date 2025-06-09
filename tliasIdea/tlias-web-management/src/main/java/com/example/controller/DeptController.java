@@ -1,6 +1,7 @@
 package com.example.controller;
 
 
+import com.example.anno.Log;
 import com.example.pojo.Dept;
 import com.example.pojo.Result;
 import com.example.service.DeptService;
@@ -26,6 +27,7 @@ public class DeptController {
     /*
      * 查询所有部门信息
      */
+
     @GetMapping
     public Result list() {
         logger.info("查询所有部门信息");
@@ -36,6 +38,7 @@ public class DeptController {
     /*
      * 根据id删除部门信息
      */
+    @Log
     @DeleteMapping
     public Result delete(@RequestParam Integer id) {
         logger.info("根据id删除部门信息{}", id);
@@ -46,6 +49,7 @@ public class DeptController {
     /*
      * 添加部门信息
      */
+    @Log
     @PostMapping
     public Result add(@RequestBody Dept dept) {
         logger.info("添加部门信息{}", dept);
@@ -66,6 +70,7 @@ public class DeptController {
     /*
      * 修改部门信息
      */
+    @Log
     @PutMapping
     public Result update(@RequestBody Dept dept) {
         logger.info("修改部门信息{}", dept);

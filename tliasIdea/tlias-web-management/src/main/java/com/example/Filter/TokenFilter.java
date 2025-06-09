@@ -13,7 +13,7 @@ import java.io.IOException;
 /**
  * filter令牌校验流程
  */
-@WebFilter(urlPatterns = "/*")
+//@WebFilter(urlPatterns = "/*")
 public class TokenFilter implements Filter {
 
     //声明Logger对象
