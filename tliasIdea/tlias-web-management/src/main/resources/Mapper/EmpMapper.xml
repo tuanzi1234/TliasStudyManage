@@ -13,7 +13,7 @@
             <if test="password != null and password != ''">
                 password = #{password},
             </if>
-            <if test="name != null and name = ''">
+            <if test="name != null and name != ''">
                 name = #{name},
             </if>
             <if test="gender != null">

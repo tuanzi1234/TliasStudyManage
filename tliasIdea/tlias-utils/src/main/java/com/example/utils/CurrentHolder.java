@@ -1,7 +1,5 @@
 package com.example.utils;
 
-import com.example.pojo.OperateLog;
-
 public class CurrentHolder {
     private static final ThreadLocal<Integer> CURRENT_LOCAL = new ThreadLocal<>();
 

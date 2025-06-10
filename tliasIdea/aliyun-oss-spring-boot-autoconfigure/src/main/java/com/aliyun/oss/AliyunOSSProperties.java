@@ -1,9 +1,9 @@
-package com.example.utils;
+package com.aliyun.oss;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
-@Component
+
 @ConfigurationProperties(prefix = "aliyun.oss")
 public class AliyunOSSProperties {
     private String endpoint;

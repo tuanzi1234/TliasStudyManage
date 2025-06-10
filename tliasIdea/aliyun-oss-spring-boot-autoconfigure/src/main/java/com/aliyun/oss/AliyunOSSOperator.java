@@ -1,21 +1,15 @@
-package com.example.utils;
+package com.aliyun.oss;
 
-import com.aliyun.oss.ClientBuilderConfiguration;
-import com.aliyun.oss.OSS;
-import com.aliyun.oss.OSSClientBuilder;
 import com.aliyun.oss.common.auth.CredentialsProviderFactory;
 import com.aliyun.oss.common.auth.EnvironmentVariableCredentialsProvider;
 import com.aliyun.oss.common.comm.SignVersion;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayInputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
-@Component // 将当前类声明为组件
+// 将当前类声明为组件
 public class AliyunOSSOperator {
 
     //阿里云OSS的参数声明为静态常量
@@ -33,8 +27,13 @@ public class AliyunOSSOperator {
     private String region;*/
 
     //因此可以使用@Autowired注解注入封装好阿里云配置信息的AliyunOSSProperties对象
-    @Autowired
-    private AliyunOSSProperties aliyunOSSProperties;
+
+    private final AliyunOSSProperties aliyunOSSProperties;
+
+    public AliyunOSSOperator(AliyunOSSProperties aliyunOSSProperties) {
+        this.aliyunOSSProperties = aliyunOSSProperties;
+    }
+
 
     //上传文件
     public String upload(byte[] content, String originFileName) throws Exception {
