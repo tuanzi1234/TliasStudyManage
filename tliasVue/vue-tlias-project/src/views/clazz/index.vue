@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <router-view></router-view>
+  班级管理
 </template>
 
 <style scoped>

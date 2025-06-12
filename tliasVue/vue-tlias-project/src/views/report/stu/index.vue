@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <router-view></router-view>
+  学员信息统计
 </template>
 
 <style scoped>
