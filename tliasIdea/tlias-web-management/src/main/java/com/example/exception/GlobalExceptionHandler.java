@@ -45,14 +45,7 @@ public class GlobalExceptionHandler {
         //记录日志
         log.error("数值出错", e);
         //返回错误信息
-        return Result.error(e.getMessage());
-    }
-    @ExceptionHandler
-    public Result handleException(RuntimeException e) {
-        //记录日志
-        log.error("运行时出错", e);
-        //返回错误信息
-        return Result.error(e.getMessage());
+        return Result.error("参数不合法");
     }
 
 }
