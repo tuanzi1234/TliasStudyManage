@@ -22,6 +22,8 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(new TokenInterceptor())
                 .addPathPatterns("/**") // 拦截所有请求
                 .excludePathPatterns("/login") //在拦截器中没有判断登录接口，在注册类中就需要配置排除登录接口的方法。
-                .excludePathPatterns("/depts/**");
+                .excludePathPatterns("/depts/**")
+                .excludePathPatterns("/emps/**")
+                .excludePathPatterns("/upload");
     }
 }
