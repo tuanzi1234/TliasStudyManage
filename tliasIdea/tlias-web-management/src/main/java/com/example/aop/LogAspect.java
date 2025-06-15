@@ -15,11 +15,11 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
-//@Aspect
-//@Component
+@Aspect
+@Component
 public class LogAspect {
 
-   // @Autowired  // 自动注入操作日志Mapper
+    @Autowired  // 自动注入操作日志Mapper
     private OperateLogMapper operateLogMapper;
     //声明Logger对象
     private static final Logger logger = LoggerFactory.getLogger(LogAspect.class);

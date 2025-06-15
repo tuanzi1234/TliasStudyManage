@@ -1,5 +1,26 @@
 <script setup>
+import { ref, onMounted } from 'vue'
+import router from "@/router/index.js";
 
+const loginName = ref('')
+//获取当前登录员工的函数
+const getCurrentEmp = () => {
+  const loginUser = JSON.parse(localStorage.getItem('loginUser'));
+  if (loginUser && loginUser.name){
+    loginName.value = loginUser.name;
+
+  }
+}
+//钩子函数
+onMounted(() => {
+  getCurrentEmp();
+})
+
+//退出登录的函数
+const logout = () => {
+  localStorage.removeItem('loginUser');
+  router.push('/login');
+}
 </script>
 
 <template>
@@ -12,8 +33,8 @@
           <a href="">
             <el-icon><EditPen/></el-icon> 修改密码 &nbsp;&nbsp;&nbsp; |  &nbsp;&nbsp;&nbsp;
           </a>
-          <a href="">
-            <el-icon><SwitchButton/></el-icon> 退出登录
+          <a href="javascript:void(0)" @click="logout">
+            <el-icon><SwitchButton/></el-icon> 退出登录 <span>【{{loginName}}】</span>
           </a>
         </span>
       </el-header>

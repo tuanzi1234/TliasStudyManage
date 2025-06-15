@@ -48,26 +48,19 @@ const save = async () => {
       if (dept.value.id) {
         //调用修改部门的函数
         result = await updateDeptById(dept.value.id, dept.value);
-        if (result.code) {
-          ElMessage.success("操作成功");
-          dialogVisible.value = false;
-          await search();
-        } else {
-          ElMessage.error(result.msg);
-        }
       } else {
         //调用添加部门的函数
         result = await addDept(dept.value);
-        if (result.code) {
-          //提示信息
-          ElMessage.success("操作成功");
-          //关闭对话框
-          dialogVisible.value = false;
-          //查询
-          await search();
-        } else {
-          ElMessage.error(result.msg);
-        }
+      }
+      if (result.code) {
+        //提示信息
+        ElMessage.success("操作成功");
+        //关闭对话框
+        dialogVisible.value = false;
+        //查询
+        await search();
+      } else {
+        ElMessage.error(result.msg);
       }
     } else {
       ElMessage.error("表单校验失败");
@@ -103,15 +96,15 @@ const showDeleteDeptById = async (id) => {
     confirmButtonText: '确定',
     cancelButtonText: '取消',
     type: 'warning'
-  }).then( async () => { //点击确定按钮时触发的函数
+  }).then(async () => { //点击确定按钮时触发的函数
     const result = await deleteDeptById(id);
-    if (result.code){
+    if (result.code) {
       ElMessage.success('删除成功');
       const newList = await getDeptList();
-      if (newList.code){
+      if (newList.code) {
         deptList.value = newList.data;
       }
-    }else {
+    } else {
       ElMessage.error(result.msg);
     }
   }).catch(() => { //点击取消按钮时触发的函数

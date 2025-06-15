@@ -28,6 +28,9 @@ const router = createRouter({
                 {path: '/clazz', name: 'clazz', component: ClazzView},
             ]
         },
+        //  添加默认重定向
+        { path: '/', redirect: '/login' }, // 根路径重定向到登录
+        { path: '/:pathMatch(.*)*', redirect: '/login' } // 未匹配路由重定向到登录
     ]
 })
 
