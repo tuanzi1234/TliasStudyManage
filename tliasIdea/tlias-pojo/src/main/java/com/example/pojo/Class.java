@@ -2,6 +2,7 @@ package com.example.pojo;
 
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -15,8 +16,8 @@ public class Class {
     private LocalDate endDate;
     private Integer masterId;
     private Integer subject;
-    private LocalDate  createTime;
-    private LocalDate  updateTime;
+    private LocalDateTime createTime;
+    private LocalDateTime  updateTime;
     //  班级的班主任
     private String masterName;
     //班级状态
@@ -25,7 +26,7 @@ public class Class {
     public Class() {
     }
 
-    public Class(Integer id, String name, Integer room, LocalDate beginDate, LocalDate endDate, Integer masterId, Integer subject, LocalDate createTime, LocalDate updateTime, String masterName, String status) {
+    public Class(Integer id, String name, Integer room, LocalDate beginDate, LocalDate endDate, Integer masterId, Integer subject, LocalDateTime createTime, LocalDateTime updateTime, String masterName, String status) {
         this.id = id;
         this.name = name;
         this.room = room;
@@ -95,19 +96,19 @@ public class Class {
         this.subject = subject;
     }
 
-    public LocalDate getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(LocalDate createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 
-    public LocalDate getUpdateTime() {
+    public LocalDateTime getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(LocalDate updateTime) {
+    public void setUpdateTime(LocalDateTime updateTime) {
         this.updateTime = updateTime;
     }
 

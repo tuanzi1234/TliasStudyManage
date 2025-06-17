@@ -181,7 +181,7 @@ const save = async () => {
         result = await addEmpData(employee.value);
       }
       if (result.code) {
-        ElMessage.success('添加成功');
+        ElMessage.success('编辑成功');
         dialogVisible.value = false;
         await search();
       } else {
@@ -222,6 +222,9 @@ const edit = async (id) => {
     dialogVisible.value = true;
     dialogTitle.value = '修改员工';
     employee.value = result.data;
+  }
+  if (empFormRef.value) {
+    empFormRef.value.resetFields();
   }
   //对工作经历进行处理
   let exprList = employee.value.exprList;
@@ -268,10 +271,13 @@ const deleteBatchesByIds = () => {
     type: 'warning'
   }).then(() => { //点击确定按钮时触发的函数
     if (checkedIds.value && checkedIds.value.length > 0){
-      deleteEmpById(checkedIds.value).then(() => {
+      const result = deleteEmpById(checkedIds.value);
+      if (result.code) {
         ElMessage.success('删除成功');
         search();
-      })
+      }else {
+        ElMessage.error(result.msg);
+      }
     }else {
       ElMessage.info('未选择任何员工');
     }

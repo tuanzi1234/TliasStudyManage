@@ -1,6 +1,7 @@
 package com.example.pojo;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -20,15 +21,15 @@ public class Student {
     private Integer clazzId;
     private Integer violationCount;
     private Integer violationScore;
-    private LocalDate createTime;
-    private LocalDate updateTime;
+    private LocalDateTime createTime;
+    private LocalDateTime updateTime;
     //  关联课程名称
     private String clazzName;
 
     public Student() {
     }
 
-    public Student(Integer id, String name, String no, Integer gender, String phone, String idCard, Integer isCollege, String address, Integer degree, LocalDate graduationDate, Integer clazzId, Integer violationCount, Integer violationScore, LocalDate createTime, LocalDate updateTime, String clazzName) {
+    public Student(Integer id, String name, String no, Integer gender, String phone, String idCard, Integer isCollege, String address, Integer degree, LocalDate graduationDate, Integer clazzId, Integer violationCount, Integer violationScore, LocalDateTime createTime, LocalDateTime updateTime, String clazzName) {
         this.id = id;
         this.name = name;
         this.no = no;
@@ -151,19 +152,19 @@ public class Student {
         this.violationScore = violationScore;
     }
 
-    public LocalDate getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(LocalDate createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 
-    public LocalDate getUpdateTime() {
+    public LocalDateTime getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(LocalDate updateTime) {
+    public void setUpdateTime(LocalDateTime updateTime) {
         this.updateTime = updateTime;
     }
 

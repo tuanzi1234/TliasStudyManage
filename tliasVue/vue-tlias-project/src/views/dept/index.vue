@@ -128,7 +128,11 @@ const showDeleteDeptById = async (id) => {
     <el-table :data="deptList" stripe border style="width: 100% ">
       <el-table-column type="index" label="序号" width="200" align="center"/>
       <el-table-column prop="name" label="部门名称" width="400" align="center"/>
-      <el-table-column prop="updateTime" label="最后操作时间" width="400" align="center"/>
+      <el-table-column prop="updateTime" label="最后操作时间" width="400" align="center">
+        <template #default="scope">
+          {{ new Date(scope.row.updateTime).toLocaleString() }}
+        </template>
+      </el-table-column>
       <el-table-column label="操作" align="center">
         <template #default="scope">
           <el-button type="primary" size="small" @click="edit(scope.row.id)">编辑</el-button>

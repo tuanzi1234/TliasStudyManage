@@ -48,4 +48,11 @@ public class GlobalExceptionHandler {
         return Result.error("参数不合法");
     }
 
+    // 处理特定业务规则的RuntimeException
+    @ExceptionHandler
+    public Result handleBusinessRuleException(RuntimeException e) {
+        log.error("业务规则异常：{}", e.getMessage()); // 精准记录日志
+        return Result.error(e.getMessage()); // 直接返回异常消息
+    }
+
 }

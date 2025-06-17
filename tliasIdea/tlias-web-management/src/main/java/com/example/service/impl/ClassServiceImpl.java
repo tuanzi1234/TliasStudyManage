@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -64,8 +65,8 @@ public class ClassServiceImpl implements ClassService {
     @Override
     public void add(Class clazz) {
         //设置创建时间和更新时间
-        clazz.setCreateTime(LocalDate.now());
-        clazz.setUpdateTime(LocalDate.now());
+        clazz.setCreateTime(LocalDateTime.now());
+        clazz.setUpdateTime(LocalDateTime.now());
         //调用添加方法
         classMapper.add(clazz);
     }
@@ -96,7 +97,7 @@ public class ClassServiceImpl implements ClassService {
     @Override
     public void updateById(Class clazz) {
         //设置更新时间
-        clazz.setUpdateTime(LocalDate.now());
+        clazz.setUpdateTime(LocalDateTime.now());
         //调用修改方法
         classMapper.updateById(clazz);
     }

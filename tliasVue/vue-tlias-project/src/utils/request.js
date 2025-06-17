@@ -28,7 +28,7 @@ request.interceptors.response.use(
     },
     (error) => {
         if (error.response.status === 401) {
-            ElMessage.error('未登录或登录已过期，请重新登录')
+            ElMessage.error('未登录或登录已过期，请重新登录');
             localStorage.removeItem('loginUser');
             router.push('/login');
         }else {
