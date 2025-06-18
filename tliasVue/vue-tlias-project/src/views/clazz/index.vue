@@ -92,12 +92,13 @@ const dialogTitle = ref();
 // 表单验证规则
 const rules = ref({
   name: [
-    { required: true, message: '班级名称不能为空', trigger: 'blur' },
-    { min: 2, max: 30, message: '班级名称长度不能小于2个字符或大于30个字符', trigger: 'blur'}
+    {required: true, message: '班级名称不能为空', trigger: 'blur'},
+    {min: 2, max: 30, message: '班级名称长度不能小于2个字符或大于30个字符', trigger: 'blur'}
   ],
   room: [
-    { required: true, message: '请输入教室名称', trigger: 'blur' },
-    { validator: (rule, value, callback) => {
+    {required: true, message: '请输入教室名称', trigger: 'blur'},
+    {
+      validator: (rule, value, callback) => {
         if (value && (value.length < 2 || value.length > 20)) {
           callback(new Error('教室名称长度不能小于2个字符或大于20个字符'));
         } else {
@@ -108,14 +109,14 @@ const rules = ref({
     }
   ],
   beginDate: [
-    { required: true, message: '请选择开课时间', trigger: 'change' }
+    {required: true, message: '请选择开课时间', trigger: 'change'}
   ],
   endDate: [
-    { required: true, message: '请选择结课时间', trigger: 'change' },
+    {required: true, message: '请选择结课时间', trigger: 'change'},
     {
       validator: (rule, value, callback) => {
         if (clazz.value.beginDate && value) {
-          if (value< clazz.value.beginDate) {
+          if (value < clazz.value.beginDate) {
             callback(new Error('结课时间不能早于开课时间'))
           } else {
             callback()
@@ -128,7 +129,7 @@ const rules = ref({
     }
   ],
   subject: [
-    { required: true, message: '请选择学科', trigger: 'change' }
+    {required: true, message: '请选择学科', trigger: 'change'}
   ],
 });
 // 表单引用
@@ -185,7 +186,7 @@ const showAddClazz = () => {
     status: '',
     subject: '',
   }
-  if (formRef.value){
+  if (formRef.value) {
     formRef.value.resetFields();
   }
 }
@@ -199,14 +200,14 @@ const showDeptList = async () => {
 //点击弹窗的“确定”按钮触发的函数
 const addClazzData = async () => {
   //表单校验
-  if( !formRef.value ) return;
+  if (!formRef.value) return;
   formRef.value.validate(async (valid) => {
-    if ( valid ){
+    if (valid) {
       //如果有id值，则修改，没有则添加
       let Result;
-      if (clazz.value.id){
+      if (clazz.value.id) {
         Result = await updateClazzById(clazz.value)
-      }else {
+      } else {
         Result = await addClazz(clazz.value)
       }
       if (Result.code) {
@@ -216,7 +217,7 @@ const addClazzData = async () => {
       } else {
         ElMessage.error(Result.msg)
       }
-    }else {
+    } else {
       ElMessage.error('表单校验不通过')
     }
   })
@@ -229,7 +230,7 @@ const editClazz = async (id) => {
     clazz.value = Result.data;
     dialogTitle.value = '编辑班级信息';
   }
-  if (formRef.value){
+  if (formRef.value) {
     formRef.value.resetFields();
   }
 }
@@ -239,7 +240,7 @@ const deleteClazz = async (id) => {
     confirmButtonText: '确定',
     cancelButtonText: '取消',
     type: 'warning'
-  }).then( async () => { //点击确定按钮时触发的函数
+  }).then(async () => { //点击确定按钮时触发的函数
     const Result = await deleteClazzById(id);
     if (Result.code) {
       ElMessage.success('删除成功')
@@ -313,6 +314,7 @@ onMounted(() => {
       </el-table-column>
     </el-table>
   </div>
+  <!--  分页条-->
   <div class="container">
     <el-pagination
         v-model:current-page="currentPage"

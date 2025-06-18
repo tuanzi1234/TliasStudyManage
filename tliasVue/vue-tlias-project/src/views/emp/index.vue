@@ -198,7 +198,7 @@ const save = async () => {
 const rules = ref({
   username: [
     {required: true, message: '请输入用户名', trigger: 'blur'},
-    {min: 3, max: 10, message: '长度在 2 到 10 个字符', trigger: 'blur'}
+    {min: 3, max: 20, message: '长度在 2 到 20 个字符', trigger: 'blur'}
   ],
   name: [
     {required: true, message: '请输入姓名', trigger: 'blur'},
@@ -269,12 +269,12 @@ const deleteBatchesByIds = () => {
     confirmButtonText: '确定',
     cancelButtonText: '取消',
     type: 'warning'
-  }).then(() => { //点击确定按钮时触发的函数
+  }).then( async () => { //点击确定按钮时触发的函数
     if (checkedIds.value && checkedIds.value.length > 0){
-      const result = deleteEmpById(checkedIds.value);
+      const result = await deleteEmpById(checkedIds.value);
       if (result.code) {
         ElMessage.success('删除成功');
-        search();
+        await search();
       }else {
         ElMessage.error(result.msg);
       }
@@ -371,7 +371,8 @@ const getToken = () => {
           <span v-else-if="scope.row.job === 2">讲师</span>
           <span v-else-if="scope.row.job === 3">学工主管</span>
           <span v-else-if="scope.row.job === 4">教研主任</span>
-          <span v-else>咨询师</span>
+          <span v-else-if="scope.row.job === 5">咨询师</span>
+          <span v-else>其他</span>
         </template>
       </el-table-column>
       <el-table-column prop="entryDate" label="入职日期" width="150" align="center"/>

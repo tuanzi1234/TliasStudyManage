@@ -28,6 +28,9 @@
             <if test="salary != null">
                 salary = #{salary},
             </if>
+            <if test="deptId != null and deptId != ''">
+                dept_id = #{deptId},
+            </if>
             <if test="image != null and image != ''">
                 image = #{image},
             </if>
