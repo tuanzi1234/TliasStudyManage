@@ -4,7 +4,6 @@ import com.example.mapper.ClassMapper;
 import com.example.mapper.StudentMapper;
 import com.example.pojo.Class;
 import com.example.pojo.ClassQueryParam;
-import com.example.pojo.EmpQueryParam;
 import com.example.pojo.PageResult;
 import com.example.service.ClassService;
 import com.github.pagehelper.Page;

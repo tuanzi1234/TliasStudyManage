@@ -33,7 +33,7 @@ mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  # SQL日志输出到控制台
     map-underscore-to-camel-case: true  # 开启数据库字段_转驼峰命名映射
-  mapper-locations: classpath:mapper/*.xml  # MyBatis映射文件路径
+  mapper-locations: classpath:Mapper/*.xml  # MyBatis映射文件路径
 
 # 日志配置设置
 logging:
