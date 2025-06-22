@@ -11,7 +11,7 @@ spring:
   # 数据源配置组
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver  # MySQL JDBC驱动类
-    url: jdbc:mysql://localhost:3306/tlias  # 数据库连接地址及库名
+    url: jdbc:mysql://mysql:3306/tlias  # 数据库连接地址及库名
     username: root  # 数据库登录用户名
     password: lvbohan2003  # 数据库登录密码
   

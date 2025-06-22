@@ -213,13 +213,13 @@ const resetPassword = async () => {
     <el-dialog v-model="dialogFormVisible" title="修改密码" width="500">
       <el-form :model="resetPasswordForm" :rules="rules" ref="resetPasswordRules">
         <el-form-item label="原始密码" :label-width="formLabelWidth" prop="password">
-          <el-input v-model="resetPasswordForm.password" autocomplete="off"/>
+          <el-input type="password" v-model="resetPasswordForm.password" autocomplete="off"/>
         </el-form-item>
         <el-form-item label="新密码" :label-width="formLabelWidth" prop="newPassword">
-          <el-input v-model="resetPasswordForm.newPassword" autocomplete="off"/>
+          <el-input type="password" v-model="resetPasswordForm.newPassword" autocomplete="off"/>
         </el-form-item>
         <el-form-item label="确认密码" :label-width="formLabelWidth" prop="confirmPassword">
-          <el-input v-model="resetPasswordForm.confirmPassword" autocomplete="off"/>
+          <el-input type="password" v-model="resetPasswordForm.confirmPassword" autocomplete="off"/>
         </el-form-item>
       </el-form>
       <template #footer>

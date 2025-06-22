@@ -1,0 +1,41 @@
+services:
+  mysql:
+    image: mysql:8.0.32
+    container_name: mysql
+    ports:
+     - "3306:3306"
+    environment:
+        MYSQL_ROOT_PASSWORD: lvbohan2003
+        TZ: Asia/Shanghai
+    volumes:
+      - "/home/tuanzi/DockerCompose/mysql/conf:/etc/mysql/conf.d"
+      - "/home/tuanzi/DockerCompose/mysql/data:/var/lib/mysql"
+      - "/home/tuanzi/DockerCompose/mysql/init:/docker-entrypoint-initdb.d"
+    networks:
+      - talias-network
+  tlias:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tlias-server
+    ports:
+      - "8080:8080"
+    networks:
+      - talias-network
+    depends_on:
+      - mysql
+  nginx:
+    image: nginx:1.27.3
+    container_name: nginx-tlias
+    ports:
+      - "80:80"
+    volumes:
+        - "/home/tuanzi/DockerCompose/tlias-nginx/conf/nginx.conf:/etc/nginx/nginx.conf"
+        - "/home/tuanzi/DockerCompose/tlias-nginx/html:/usr/share/nginx/html"
+    depends_on:
+      - tlias
+    networks:
+      - talias-network
+networks:
+  talias-network:
+    name: talias
